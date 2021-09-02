@@ -39,7 +39,7 @@ namespace SimpleCalculator
             int result = 0;
             while (true)
             {
-                Console.WriteLine("Please provide a number: ");
+                Console.WriteLine("Please provide a number or quit - q: ");
                 var input = Console.ReadLine();
                 try
                 {
@@ -64,7 +64,7 @@ namespace SimpleCalculator
                 var result = char.Parse(input);
                 if (result != '+' && result != '-' && result != '*' && result != '/' &&  result != 'q' )
                 {
-                    Console.WriteLine($"----> Error message:  ({result}) value is not +, -, *, /!");
+                    Console.WriteLine($"----> Error message:  ({result}) value is not +,  -, *, /!");
                     continue;
                 }     
                 return result;

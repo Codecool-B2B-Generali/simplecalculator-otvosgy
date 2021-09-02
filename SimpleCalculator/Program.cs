@@ -1,5 +1,6 @@
 ﻿using System;
 
+
 namespace SimpleCalculator
 {
     class Program
@@ -10,23 +11,74 @@ namespace SimpleCalculator
         }
         static void SimpleCalculator()
         {
-                int a = AskForANumber();
-                char op = AskForAnOperation();
-                int b = AskForANumber();
-                Console.WriteLine($"The result is {Calculate(op, a, b)}");
+            int a = AskForANumber();
+            char op = AskForAnOperation();
+            int b = AskForANumber();
+            Console.WriteLine($"The result is {Calculate(op, a, b)}");
         }
-          
+
         private static int AskForANumber()
         {
-            throw new NotImplementedException();
+            int numberx = 0;
+            while (true)
+            {
+                Console.WriteLine("Please provide a number! ");
+                var input = Console.ReadLine();
+                try
+                {
+                    numberx = int.Parse(input);
+                    break;                   
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Message : {ex.Message}");
+                }
+            }
+            return numberx;
         }
+        
+        
         private static char AskForAnOperation()
         {
-            throw new NotImplementedException();
+            while (true) 
+            {
+                Console.WriteLine("Please provide an operator (one of +, -, *, /)!");
+                var input = Console.ReadLine();
+                var operatorx = char.Parse(input);
+                if (operatorx !='+' && operatorx!= '-' && operatorx != '*' && operatorx != '/')
+                {
+                    Console.WriteLine("Error message:  (value is not +, -, *, /)!");
+                    continue;
+                }     
+                return operatorx;
+            }
+            //throw new NotImplementedException();
         }
+
         private static int Calculate(char op, int a, int b)
         {
-            throw new NotImplementedException();
+            int result = 0;
+            
+            switch (op)
+            {
+                case '+':                    
+                    result = a + b;
+                    break;
+                case '-':
+                    result = a - b;
+                    break;
+                case '*':
+                    result = a * b;
+                    break;
+                case '/':
+                    result = a / b;
+                    break;
+                default:
+                    result = 0;
+                    break;
+            }
+            return result;
+            // throw new NotImplementedException();
         }
     }
 }

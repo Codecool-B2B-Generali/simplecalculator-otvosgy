@@ -11,30 +11,47 @@ namespace SimpleCalculator
         }
         static void SimpleCalculator()
         {
-            int a = AskForANumber();
-            char op = AskForAnOperation();
-            int b = AskForANumber();
-            Console.WriteLine($"The result is {Calculate(op, a, b)}");
+            while (true)
+            {
+
+                int a = AskForANumber();
+                if (a == 0)
+                {
+                    return;
+                }
+                char op = AskForAnOperation();
+                if (op == 'q')
+                {
+                    return;
+                }
+
+                int b = AskForANumber();
+                if (b == 0)
+                {
+                    return;
+                }
+                Console.WriteLine($"The result is {Calculate(op, a, b)}");
+            }
         }
 
         private static int AskForANumber()
         {
-            int pnumberx = 0;
+            int result = 0;
             while (true)
             {
-                Console.WriteLine("Please provide a number! ");
+                Console.WriteLine("Please provide a number: ");
                 var input = Console.ReadLine();
                 try
                 {
-                    pnumberx = int.Parse(input);
+                    result = int.Parse(input);
                     break;                   
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine($"Message : {ex.Message}");
+                    Console.WriteLine($"----> Error message : {ex.Message}");
                 }
             }
-            return pnumberx;
+            return result;
         }
         
         
@@ -42,36 +59,36 @@ namespace SimpleCalculator
         {
             while (true) 
             {
-                Console.WriteLine("Please provide an operator (one of +, -, *, /)!");
+                Console.WriteLine("Please provide an operator (one of +, -, *, /)!  quit - q");
                 var input = Console.ReadLine();
-                var operatorx = char.Parse(input);
-                if (operatorx !='+' && operatorx!= '-' && operatorx != '*' && operatorx != '/')
+                var result = char.Parse(input);
+                if (result != '+' && result != '-' && result != '*' && result != '/' &&  result != 'q' )
                 {
-                    Console.WriteLine("Error message:  (value is not +, -, *, /)!");
+                    Console.WriteLine($"----> Error message:  ({result}) value is not +, -, *, /!");
                     continue;
                 }     
-                return operatorx;
+                return result;
             }
             //throw new NotImplementedException();
         }
 
-        private static int Calculate(char op, int a, int b)
+        private static int Calculate(char p_op, int p_a, int p_b)
         {
             int result = 0;
             
-            switch (op)
+            switch (p_op)
             {
                 case '+':                    
-                    result = a + b;
+                    result = p_a + p_b;
                     break;
                 case '-':
-                    result = a - b;
+                    result = p_a - p_b;
                     break;
                 case '*':
-                    result = a * b;
+                    result = p_a * p_b;
                     break;
                 case '/':
-                    result = a / b;
+                    result = p_a / p_b;
                     break;
                 default:
                     result = 0;

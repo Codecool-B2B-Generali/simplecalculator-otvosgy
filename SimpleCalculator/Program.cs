@@ -19,14 +19,14 @@ namespace SimpleCalculator
 
         private static int AskForANumber()
         {
-            int numberx = 0;
+            int pnumberx = 0;
             while (true)
             {
                 Console.WriteLine("Please provide a number! ");
                 var input = Console.ReadLine();
                 try
                 {
-                    numberx = int.Parse(input);
+                    pnumberx = int.Parse(input);
                     break;                   
                 }
                 catch (Exception ex)
@@ -34,7 +34,7 @@ namespace SimpleCalculator
                     Console.WriteLine($"Message : {ex.Message}");
                 }
             }
-            return numberx;
+            return pnumberx;
         }
         
         

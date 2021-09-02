@@ -48,7 +48,7 @@ namespace SimpleCalculator
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine($"----> Error message : {ex.Message}");
+                    Console.WriteLine($"----> Error message: {ex.Message}");
                 }
             }
             return result;

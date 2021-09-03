@@ -16,7 +16,7 @@ namespace SimpleCalculator
                 try
                 {
                     int a = AskForANumber();
-
+                    
                     if (a == -1)
                     {
                         return;
@@ -44,27 +44,39 @@ namespace SimpleCalculator
             }
         }
 
+        //private static int AskForANumber()
+        //{
+        //    int result = 0;
+        //    while (true)
+        //    {
+        //        Console.WriteLine("Please provide a number or quit -1: ");
+        //        var input = Console.ReadLine();
+        //            result = int.Parse(input);
+        //            break;                   
+        //    }
+        //    return result;
+        //}
+
         private static int AskForANumber()
         {
             int result = 0;
-            while (true)
-            {
-                Console.WriteLine("Please provide a number or quit -1: ");
-                var input = Console.ReadLine();
-                    result = int.Parse(input);
-                    break;                   
+            Console.WriteLine("Please provide a number or quit -1: ");
+            while (!int.TryParse(Console.ReadLine(), out result))
+            { 
+                Console.WriteLine("Invalid input. Please provide a number!");
             }
             return result;
         }
-        
-        
-        private static char AskForAnOperation()
+
+
+    private static char AskForAnOperation()
         {
             while (true) 
             {
                 Console.WriteLine("Please provide an operator (one of +, -, *, /)!  quit - q");
                 var input = Console.ReadLine();
                 var result  = char.Parse(input);
+                
                 if (result != '+' && result != '-' && result != '*' && result != '/' &&  result != 'q' )
                 {
                     Console.WriteLine($"----> Error message:  ({result}) value is not +,  -, *, /!");

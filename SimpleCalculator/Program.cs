@@ -13,24 +13,34 @@ namespace SimpleCalculator
         {
             while (true)
             {
+                try
+                {
+                    int a = AskForANumber();
 
-                int a = AskForANumber();
-                if (a == 0)
-                {
-                    return;
-                }
-                char op = AskForAnOperation();
-                if (op == 'q')
-                {
-                    return;
-                }
+                    if (a == -1)
+                    {
+                        return;
+                    }
+                    char op = AskForAnOperation();
+                    if (op == 'q')
+                    {
+                        return;
+                    }
 
-                int b = AskForANumber();
-                if (b == 0)
-                {
-                    return;
+                    int b = AskForANumber();
+                    if (b == -1)
+                    {
+                        return;
+                    }
+                
+                    Console.WriteLine($"The result is {Calculate(op, a, b)}");
+                    Console.WriteLine($" ");
+                    Console.WriteLine($"---------------- Ú J ----------------");
                 }
-                Console.WriteLine($"The result is {Calculate(op, a, b)}");
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"----> Error message: {ex.Message}");
+                }
             }
         }
 
@@ -39,17 +49,10 @@ namespace SimpleCalculator
             int result = 0;
             while (true)
             {
-                Console.WriteLine("Please provide a number or quit - q: ");
+                Console.WriteLine("Please provide a number or quit -1: ");
                 var input = Console.ReadLine();
-                try
-                {
                     result = int.Parse(input);
                     break;                   
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine($"----> Error message: {ex.Message}");
-                }
             }
             return result;
         }
@@ -61,7 +64,7 @@ namespace SimpleCalculator
             {
                 Console.WriteLine("Please provide an operator (one of +, -, *, /)!  quit - q");
                 var input = Console.ReadLine();
-                var result = char.Parse(input);
+                var result  = char.Parse(input);
                 if (result != '+' && result != '-' && result != '*' && result != '/' &&  result != 'q' )
                 {
                     Console.WriteLine($"----> Error message:  ({result}) value is not +,  -, *, /!");
@@ -88,14 +91,14 @@ namespace SimpleCalculator
                     result = p_a * p_b;
                     break;
                 case '/':
-                    result = p_a / p_b;
+                        result = p_a / p_b;
                     break;
                 default:
                     result = 0;
                     break;
             }
             return result;
-            // throw new NotImplementedException();
+            
         }
     }
 }
